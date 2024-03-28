@@ -1,21 +1,23 @@
-window.onload = function() {
-    // Get the element with class "yt-link"
-    var ytLink = document.querySelector('.yt-link');
 
-    // Get the YouTube link text content
-    var youtubeLink = ytLink.textContent.trim();
-
-    // Extract video ID from the YouTube link
-    var videoID = youtubeLink.split('v=')[1];
-    var ampersandPosition = videoID.indexOf('&');
-    if (ampersandPosition !== -1) {
-        videoID = videoID.substring(0, ampersandPosition);
+//JavaScript to dynamically embed the YouTube videos
+(function($) {
+  $(function() {
+    function embedYouTubeVideo(container, videoId) {
+      var iframe = document.createElement('iframe');
+      iframe.setAttribute('width', '100%');
+      iframe.setAttribute('height', '315');
+      iframe.setAttribute('src', 'https://www.youtube.com/embed/' + videoId);
+      iframe.setAttribute('frameborder', '0');
+      iframe.setAttribute('allowfullscreen', '');
+      container.append(iframe);
     }
 
-    // Construct the iframe HTML
-    var iframeHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/' + videoID + '" frameborder="0" allowfullscreen></iframe>';
+    // Extract video ID from the paragraph content and embed videos
+    $('.youtube-link p').each(function() {
+      var videoId = $(this).text().match(/(?:v=)([\w-]+)/)[1];
+      var container = $(this).closest('.lay-col12-xs-12').find('.youtube-video');
+      embedYouTubeVideo(container, videoId);
+    });
+  });
+})(jQuery);
 
-    // Insert the iframe HTML into the div with class "yt-video"
-    var ytVideoDiv = document.querySelector('.yt-video');
-    ytVideoDiv.innerHTML = iframeHTML;
-}

@@ -1,0 +1,31 @@
+/*-----------------------------------------
+　　　　youtube 動画テンプレート
+-----------------------------------------*/
+.youtube-video, .youtube-link {
+    text-align: center;
+}
+.cms-contentsparts-parts-preview .youtube-video {
+    background: url(/images/yt.png) ;
+    background-size: contain;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+}
+#cms_contents_area .youtube-link {
+    display: block;
+}
+.youtube-link {
+    display: none;
+}
+.youtube-link p {
+    color: #00a2ea;
+}
+.youtube-link p:before {
+    content: "動画リンクはココ：";
+    padding-right: 10px;
+    color: #f00;
+}
+.youtube-video iframe {
+    aspect-ratio: 16 / 9;
+    width: 70%;
+    height: 100%;
+}
